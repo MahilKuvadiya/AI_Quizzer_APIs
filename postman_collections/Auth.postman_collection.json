@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "4f908e44-c6ee-4c14-9b33-469c057d4738",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34171359"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"mahilpatel6858@gmail.com\",\r\n    \"username\" : \"Mahil\",\r\n    \"password\" : \"12345678\"\r\n}"
+				},
+				"url": "http://13.239.24.114:3000/auth/register",
+				"description": "## Register User\n\nThis endpoint is used to register a new user.\n\n### Request Body\n\n- `email` (string, required): The email of the user.\n- `username` (string, required): The username of the user.\n- `password` (string, required): The password for the user account.\n    \n\n### Response\n\n- Status: 200 OK\n- Content-Type: application/json\n- `_id` (string): The unique identifier of the registered user.\n- `username` (string): The username of the registered user.\n- `email` (string): The email of the registered user.\n    \n\n#### Example Response\n\n``` json\n{\n    \"_id\": \"\",\n    \"username\": \"\",\n    \"email\": \"\"\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "http://localhost:3000/auth/register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"mahilpatel6858@gmail.com\",\r\n    \"username\" : \"Mahil\",\r\n    \"password\" : \"12345678\"\r\n}"
+						},
+						"url": "http://localhost:3000/auth/register",
+						"description": "## Register User\n\nThis endpoint is used to register a new user.\n\n### Request Body\n\n- `email` (string, required): The email of the user.\n- `username` (string, required): The username of the user.\n- `password` (string, required): The password for the user account.\n    \n\n### Response\n\n- Status: 200 OK\n- Content-Type: application/json\n- `_id` (string): The unique identifier of the registered user.\n- `username` (string): The username of the registered user.\n- `email` (string): The email of the registered user.\n    \n\n#### Example Response\n\n``` json\n{\n    \"_id\": \"\",\n    \"username\": \"\",\n    \"email\": \"\"\n}\n\n ```"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "88"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"58-1q9QLBjNpW7ND2pgNDm9y+ethBk\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 11 Apr 2024 17:54:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"661823e5157bec4eeaf5daa7\",\n    \"username\": \"Mahil\",\n    \"email\": \"mahilpatel6858@gmail.com\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>Field</th>",
+							"        <th>Value</th>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>Authentication Password</td>",
+							"        <td>{{response.authentication.password}}</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>Authentication Salt</td>",
+							"        <td>{{response.authentication.salt}}</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>ID</td>",
+							"        <td>{{response._id}}</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>Username</td>",
+							"        <td>{{response.username}}</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>Email</td>",
+							"        <td>{{response.email}}</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>Created At</td>",
+							"        <td>{{response.createdAt}}</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>Version</td>",
+							"        <td>{{response.__v}}</td>",
+							"    </tr>",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    return {response: pm.response.json()}",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"kuvadiyamahil@gmail.com\",\n    \"password\" : \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://13.239.24.114:3000/auth/login",
+				"description": "### Auth Login\n\nThis endpoint is used to authenticate and login a user.\n\n#### Request Body\n\n- email (text, required): The email of the user.\n- password (text, required): The password of the user.\n    \n\n#### Response\n\n- Status: 200 OK\n- Content-Type: application/json\n- _id: The unique identifier of the authenticated user.\n- username: The username of the authenticated user.\n- email: The email of the authenticated user.\n    \n\n#### Example Response\n\n``` json\n{\n  \"_id\": \"\",\n  \"username\": \"\",\n  \"email\": \"\"\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "http://localhost:3000/auth/login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"kuvadiyamahil@gmail.com\",\n    \"password\" : \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/auth/login",
+						"description": "### Auth Login\n\nThis endpoint is used to authenticate and login a user.\n\n#### Request Body\n\n- email (text, required): The email of the user.\n- password (text, required): The password of the user.\n    \n\n#### Response\n\n- Status: 200 OK\n- Content-Type: application/json\n- _id: The unique identifier of the authenticated user.\n- username: The username of the authenticated user.\n- email: The email of the authenticated user.\n    \n\n#### Example Response\n\n``` json\n{\n  \"_id\": \"\",\n  \"username\": \"\",\n  \"email\": \"\"\n}\n\n ```"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ACCESS_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjE1Nzg1NDJmZGQwZWM0NTBiMzI3ZGIiLCJ1c2VybmFtZSI6Ik1haGlsODQ0OCIsImVtYWlsIjoia3V2YWRpeWFtYWhpbEBnbWFpbC5jb20iLCJpYXQiOjE3MTI4NTgzMjEsImV4cCI6MTcxMjg1ODMzNn0.qqcGox5cWDPqGjjIrUBwXYyR5voLlNebR-B4g3pug9o; Path=/; HttpOnly"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "REFRESH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTU3ODU0MmZkZDBlYzQ1MGIzMjdkYiIsImlhdCI6MTcxMjg1ODMyMSwiZXhwIjoxNzQ0NDE1OTIxfQ.IzT9oiAyHWl97zTpLv7_9Uiz_ZIUxg3JLbn-SJ33els; Max-Age=31540000; Path=/; Expires=Fri, 11 Apr 2025 19:05:21 GMT; HttpOnly"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "91"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5b-FXA+nb2QGfAFNW08zHdasJ44Q6c\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 11 Apr 2024 17:58:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"661578542fdd0ec450b327db\",\n    \"username\": \"Mahil8448\",\n    \"email\": \"kuvadiyamahil@gmail.com\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://13.239.24.114:3000/auth/logout",
+				"description": "This endpoint is used to log out the authenticated user. Upon successful execution, it returns a status code of 200 and a JSON response with a message indicating the logout status.\n\n### Request Body\n\nThis endpoint does not require a request body.\n\n### Response\n\n- Status: 200\n- Content-Type: application/json\n    \n\nExample response:\n\n``` json\n{\n    \"message\": \"\"\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "http://localhost:3000/auth/logout",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3000/auth/logout",
+						"description": "This endpoint is used to log out the authenticated user. Upon successful execution, it returns a status code of 200 and a JSON response with a message indicating the logout status.\n\n### Request Body\n\nThis endpoint does not require a request body.\n\n### Response\n\n- Status: 200\n- Content-Type: application/json\n    \n\nExample response:\n\n``` json\n{\n    \"message\": \"\"\n}\n\n ```"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ACCESS_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjE1Nzg1NDJmZGQwZWM0NTBiMzI3ZGIiLCJ1c2VybmFtZSI6Ik1haGlsODQ0OCIsImVtYWlsIjoia3V2YWRpeWFtYWhpbEBnbWFpbC5jb20iLCJpYXQiOjE3MTI4NTg0NzgsImV4cCI6MTcxMjg1ODQ5M30.Oc1xI-W5u70j-i3Sz7qT46aXyoCfeVc2RsMidRiBg1g; Path=/; HttpOnly"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ACCESS_TOKEN=; Max-Age=0; Path=/; Expires=Thu, 11 Apr 2024 18:01:18 GMT; HttpOnly"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "REFRESH_TOKEN=; Max-Age=0; Path=/; Expires=Thu, 11 Apr 2024 18:01:18 GMT; HttpOnly"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"22-Q8Y7I7GZKoqUpXKdTzmwfwzesbQ\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 11 Apr 2024 18:01:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Logout successfully.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update username",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"Mahil8448\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://13.239.24.114:3000/auth/changeUsername",
+				"description": "This endpoint allows users to change their username. The HTTP POST request should be sent to [http://localhost:3000/auth/changeUsername](http://localhost:3000/auth/changeUsername).\n\n### Request Body\n\nThe request should include a JSON payload in the raw request body type with the following parameter:\n\n- `username` (string): The new username to be set.\n    \n\n### Response\n\nIn case of a successful request, the server will return a status code of 403 with a Content-Type of text/plain and a message \"Forbidden\". Additionally, the response will include the user's details with keys like `_id`, `username`, `email`, `createdAt`, and `__v`.\n\n#### Example Response\n\n```\n{\n  \"_id\": \"\",\n  \"username\": \"\",\n  \"email\": \"\",\n  \"createdAt\": \"\",\n  \"__v\": 0\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "Update username",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"Mahil8448\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/auth/changeUsername",
+						"description": "This endpoint allows users to change their username. The HTTP POST request should be sent to [http://localhost:3000/auth/changeUsername](http://localhost:3000/auth/changeUsername).\n\n### Request Body\n\nThe request should include a JSON payload in the raw request body type with the following parameter:\n\n- `username` (string): The new username to be set.\n    \n\n### Response\n\nIn case of a successful request, the server will return a status code of 403 with a Content-Type of text/plain and a message \"Forbidden\". Additionally, the response will include the user's details with keys like `_id`, `username`, `email`, `createdAt`, and `__v`.\n\n#### Example Response\n\n```\n{\n  \"_id\": \"\",\n  \"username\": \"\",\n  \"email\": \"\",\n  \"createdAt\": \"\",\n  \"__v\": 0\n}\n\n ```"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ACCESS_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjE1Nzg1NDJmZGQwZWM0NTBiMzI3ZGIiLCJ1c2VybmFtZSI6Ik1haGlsODQ0OCIsImVtYWlsIjoia3V2YWRpeWFtYWhpbEBnbWFpbC5jb20iLCJpYXQiOjE3MTI4NTg2NDYsImV4cCI6MTcxMjg1ODY2MX0.x2DXjx_0RtlVXQkuXfWmHtV8vDsS5RS4kkBwCgxGzAY; Path=/; HttpOnly"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "138"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8a-CcnnHlSFEu+zw4/RQP+EETO+bzQ\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 11 Apr 2024 18:04:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"661578542fdd0ec450b327db\",\n    \"username\": \"Mahil8448\",\n    \"email\": \"kuvadiyamahil@gmail.com\",\n    \"createdAt\": \"2024-04-09T17:17:28.435Z\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Change password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\" : \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://13.239.24.114:3000/auth/changePassword",
+				"description": "\n### Change Password\n\nThis endpoint is used to change the password for the user.\n\n**Request Body**\n- password (string, required): The new password for the user.\n\n**Response**\n- Status: 200 OK\n- Content-Type: application/json\n- message (string): A message indicating the status of the password change process.\n\n"
+			},
+			"response": [
+				{
+					"name": "Change password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/auth/changePassword",
+						"description": "\n### Change Password\n\nThis endpoint is used to change the password for the user.\n\n**Request Body**\n- password (string, required): The new password for the user.\n\n**Response**\n- Status: 200 OK\n- Content-Type: application/json\n- message (string): A message indicating the status of the password change process.\n\n"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ACCESS_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjE1Nzg1NDJmZGQwZWM0NTBiMzI3ZGIiLCJ1c2VybmFtZSI6Ik1haGlsODQ0OCIsImVtYWlsIjoia3V2YWRpeWFtYWhpbEBnbWFpbC5jb20iLCJpYXQiOjE3MTI4NTg3MzcsImV4cCI6MTcxMjg1ODc1Mn0.dBFkI9Ccbil6vAIgBJXNABsb5gzW_d2jxp-JhnayGbM; Path=/; HttpOnly"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "21"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"15-ga8EF/lp+ThIsc8w/OHbk4hPrME\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 11 Apr 2024 18:05:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"success\"\n}"
+				}
+			]
+		}
+	]
+}

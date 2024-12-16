@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "062e6a9c-52b4-4b2a-8c82-dbcc5a194687",
+		"name": "Quiz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34171359"
+	},
+	"item": [
+		{
+			"name": "New Quiz",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numQuestions\" : 2, \r\n    \"subject\" : \"Maths\",\r\n    \"grade\" : 7,\r\n    \"difficulty\" : \"HARD\" // easy | medium | hard\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://13.239.24.114:3000/new_quiz"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Quiz with Hints & CorrectAnswers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/quizes/66ee6604e3e9b316ad464237",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"quizes",
+						"66ee6604e3e9b316ad464237"
+					],
+					"query": [
+						{
+							"key": "hintFor",
+							"value": "1",
+							"description": "ex. : 1,2,3... | all",
+							"disabled": true
+						},
+						{
+							"key": "answerFor",
+							"value": "all",
+							"description": "ex. : 1,2,3... | all",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit quiz, Score evalution",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"quizId\" : \"66ee6604e3e9b316ad464237\",\r\n    \"answers\" :[\r\n        {\"questionId\" : \"1\",\r\n        \"selectedOption\" : \"B\"},\r\n        {\"questionId\" : \"2\",\r\n        \"selectedOption\" : \"D\"}\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://13.239.24.114:3000/submission",
+				"description": "### Submission Endpoint\n\nThis endpoint allows the user to submit their quiz answers.\n\n#### Request Body\n\n- `quizId` (string): The ID of the quiz being submitted.\n    \n- `answers` (array):\n    \n    - `questionId` (string): The ID of the question being answered.\n        \n    - `selectedOption` (string): The option selected as the answer.\n        \n\n#### Response\n\nThe response is in the form of a JSON schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"quizId\": {\n      \"type\": \"string\"\n    },\n    \"email\": {\n      \"type\": \"string\"\n    },\n    \"answers\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"questionId\": {\n            \"type\": \"string\"\n          },\n          \"selectedOption\": {\n            \"type\": \"string\"\n          },\n          \"correctAnswer\": {\n            \"type\": \"string\"\n          }\n        }\n      }\n    },\n    \"score\": {\n      \"type\": \"integer\"\n    },\n    \"maxScore\": {\n      \"type\": \"integer\"\n    },\n    \"completedDateAndTime\": {\n      \"type\": \"string\"\n    }\n  }\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch all quizzes with filters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://13.239.24.114:3000/quizes",
+					"protocol": "http",
+					"host": [
+						"13",
+						"239",
+						"24",
+						"114"
+					],
+					"port": "3000",
+					"path": [
+						"quizes"
+					],
+					"query": [
+						{
+							"key": "grade",
+							"value": "7",
+							"disabled": true
+						},
+						{
+							"key": "subject",
+							"value": "Maths",
+							"disabled": true
+						},
+						{
+							"key": "fromDate",
+							"value": "2024-09-21",
+							"description": "foramte : YYYY-MM-DD",
+							"disabled": true
+						},
+						{
+							"key": "submittedAfter",
+							"value": "2024-09-21",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This endpoint makes an HTTP GET request to retrieve a list of quizzes. The request does not include a request body as it is a simple GET request. The response will have a status code of 200 and a content type of application/json. The response body will contain a \"success\" key indicating the success status, and a \"data\" key which will be an array of quiz objects. Each quiz object will have properties such as \"_id\", \"quizId\", \"grade\", \"subject\", \"totalQuestions\", \"maxScore\", \"difficulty\", and \"attempts\". The \"__v\" key is also included, which is typically used for versioning in MongoDB. The \"message\" key will be empty in this response."
+			},
+			"response": []
+		},
+		{
+			"name": "All submission for a particular quiz",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://13.239.24.114:3000/quizes/66ee6604e3e9b316ad464237/submissions",
+					"protocol": "http",
+					"host": [
+						"13",
+						"239",
+						"24",
+						"114"
+					],
+					"port": "3000",
+					"path": [
+						"quizes",
+						"66ee6604e3e9b316ad464237",
+						"submissions"
+					],
+					"query": [
+						{
+							"key": "fromDate",
+							"value": "2024-09-21",
+							"description": "YYYY-MM-DD",
+							"disabled": true
+						},
+						{
+							"key": "toDate",
+							"value": "2024-09-22",
+							"description": "YYYY-MM-DD",
+							"disabled": true
+						},
+						{
+							"key": "sortByDate",
+							"value": "asc",
+							"description": "asc | desc",
+							"disabled": true
+						},
+						{
+							"key": "maxScore",
+							"value": "2",
+							"description": "submissions with the score above `maxScore`",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Email with suggestions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://13.239.24.114:3000/submission/66ee90f8b6a0bb85db9e978b/mail"
+			},
+			"response": []
+		}
+	]
+}
